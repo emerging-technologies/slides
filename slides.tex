@@ -1,0 +1,35 @@
+\documentclass[dvipsnames]{beamer}
+
+\usepackage{xcolor}
+\usepackage{lmodern}
+\usepackage{minted}
+\usepackage[utf8]{inputenc}
+\usepackage{standalone}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{adjustbox}
+\usepackage{upquote}
+\usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xspace}
+\usetikzlibrary{mindmap,shadows,arrows,positioning,chains,fit,shapes}
+
+\usetheme{metropolis}
+\usemintedstyle{manni}
+
+\definecolor{gmitblue}{RGB}{20,134,225}
+\definecolor{gmitred}{RGB}{220,20,60}
+\definecolor{gmitgrey}{RGB}{67,67,67}
+
+\setbeamercolor{structure}{fg=gmitblue}
+\setbeamercolor{frametitle}{fg=white, bg=gmitred}
+\setbeamercolor{alerted text}{fg=gmitblue}
+
+\renewcommand\footnoterule{}
+\newcommand{\citeurl}[1]{\let\thefootnote\relax\footnotetext{\tiny \textcolor{gmitgrey}{\href{http://#1}{#1}}}}
+
+\begin{document}
+  \input{content.tex}
+\end{document}
