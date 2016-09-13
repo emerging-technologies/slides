@@ -1,0 +1,27 @@
+%!TEX root = slides.tex
+
+\section{Go -- Getting Started}
+
+\begin{frame}[fragile]{Hello, World!}
+  \begin{minted}{go}
+package main
+import "fmt"
+func main() {
+  fmt.Println("Hello, world!")
+}
+  \end{minted}
+  \citeurl{gobyexample.com/hello-world}
+\end{frame}
+
+
+\begin{frame}{Go features}
+  \begin{description}
+    \item[Concurrency] is builtin with light-weight goroutines, channels.  
+    \item[Fast compiling] is a goal.
+    \item[Packages] are easily managed and dependencies are quickly resolved.
+    \item[Type inference] is available (sometimes).
+    \item[C-like] in syntax. 
+    \item[Tools] like go fmt and godoc are builtin. 
+    \item[Garbage collection] is builtin.
+  \end{description}
+\end{frame}
