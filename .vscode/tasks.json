@@ -1,8 +1,7 @@
 {
   "version": "0.1.0",
-  "command": "make",
+  "command": "latexmk",
   "isShellCommand": true,
-  "args": ["all"],
   "isBuildCommand": true,
   "showOutput": "always"
 }
