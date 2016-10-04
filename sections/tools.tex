@@ -1,0 +1,67 @@
+%!TEX root = slides.tex
+
+\section{Build tools}
+
+\begin{frame}[fragile]{go help}
+  \begin{minted}{bash}
+> go help [command]
+  \end{minted}
+  \hr
+\begin{description}
+    \item[go help] prints out help for the go command
+    \item[Optionally] you can provide another command line argument to to get help about a specific command.
+  \end{description}
+  
+  \citeurl{golang.org/cmd/go}
+\end{frame}
+
+
+\begin{frame}[fragile]{GOPATH}
+  \begin{minted}{bash}
+> export GOPATH=/Users/john/go
+  \end{minted}
+  \hr
+\begin{description}
+    \item[GOPATH] is a variable that must be set properly to use go packages.
+    \item[It's a list] of directories to look for packages in.
+    \item[Directories] listed must have \mintinline{bash}{src}, \mintinline{bash}{pkg} and \mintinline{bash}{bin} subdirectories.
+    \item[Colons] are used to separate the directories listed in GOPATH (but semicolons on Winodws). 
+  \end{description}
+  
+  \citeurl{golang.org/cmd/go}
+\end{frame}
+
+
+\begin{frame}[fragile]{go fmt}
+  \begin{minted}{bash}
+> go fmt [-n] [-x] [packages]
+  \end{minted}
+  \hr
+\begin{description}
+    \item[go fmt] formats go code in a standard way.
+    \item[gofmt] does the same, but reads and writes to and from stdin and stdout.
+    \item[Tabs] are used to clean up the code, with one tab equal to 8 spaces.
+    \item[Writing] code can be done in developers own style, then reformatted.
+    \item[Reading] code is a bit easier, as there's a standard.
+    \item[Diffs] are cleaner.
+  \end{description}
+  
+  \citeurl{golang.org/cmd/go}
+\end{frame}
+
+
+\begin{frame}[fragile]{go get}
+  \begin{minted}{bash}
+> go get ... [-u] [build flags] [packages]
+  \end{minted}
+  \hr
+\begin{description}
+    \item[go get] downloads packages and installs them into the first entry in GOPATH.
+    \item[Dependencies] are taken care of.
+    \item[Source code] is put into the src subdirectory.
+    \item[Object files] are put into the pkg directory.
+    \item[Any exectuables] are put in bin.
+  \end{description}
+  
+  \citeurl{golang.org/cmd/go}
+\end{frame}
