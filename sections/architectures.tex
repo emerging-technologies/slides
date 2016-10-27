@@ -22,3 +22,49 @@
   \end{description}
   \citeurl{developer.mozilla.org/en-US/Apps/Progressive}
 \end{frame}
+
+\begin{frame}{HTTP and CRUD}
+  \tikzstyle{rect} = [rectangle,fill=gmitblue,text width=5em,text centered,minimum height=16em,rounded corners,text=white]
+  \begin{adjustbox}{max width={0.9\textwidth},center} 
+    \begin{tikzpicture}[thick]
+
+      \node [rect] (database) at (10,0) {Database};
+      \node [rect] (webserver) at (5,0) {Web Server};
+      \node [rect] (client) at (0,0) {Client};
+
+      \path ([yshift=5.8em]webserver.west) edge[->]                                             ([yshift=5.8em]client.east);
+      \path ([yshift=6.2em]webserver.west) edge[<-] node[anchor=south] {\footnotesize POST}     ([yshift=6.2em]client.east);
+      
+      \path ([yshift=5.8em]database.west) edge[->]                                              ([yshift=5.8em]webserver.east);
+      \path ([yshift=6.2em]database.west) edge[<-] node[anchor=south] {\footnotesize CREATE}    ([yshift=6.2em]webserver.east);
+
+      \path ([yshift=1.8em]webserver.west) edge[->]                                             ([yshift=1.8em]client.east);
+      \path ([yshift=2.2em]webserver.west) edge[<-] node[anchor=south] {\footnotesize GET}      ([yshift=2.2em]client.east);
+      
+      \path ([yshift=1.8em]database.west) edge[->]                                              ([yshift=1.8em]webserver.east);
+      \path ([yshift=2.2em]database.west) edge[<-] node[anchor=south] {\footnotesize RETRIEVE}  ([yshift=2.2em]webserver.east);
+
+      \path ([yshift=-2.2em]webserver.west) edge[->]                                            ([yshift=-2.2em]client.east);
+      \path ([yshift=-1.8em]webserver.west) edge[<-] node[anchor=south] {\footnotesize PUT}     ([yshift=-1.8em]client.east);
+      
+      \path ([yshift=-2.2em]database.west) edge[->]                                             ([yshift=-2.2em]webserver.east);
+      \path ([yshift=-1.8em]database.west) edge[<-] node[anchor=south] {\footnotesize UPDATE}   ([yshift=-1.8em]webserver.east);
+
+      \path ([yshift=-6.2em]webserver.west) edge[->]                                            ([yshift=-6.2em]client.east);
+      \path ([yshift=-5.8em]webserver.west) edge[<-] node[anchor=south] {\footnotesize DELETE}  ([yshift=-5.8em]client.east);
+      
+      \path ([yshift=-6.2em]database.west) edge[->]                                             ([yshift=-6.2em]webserver.east);
+      \path ([yshift=-5.8em]database.west) edge[<-] node[anchor=south] {\footnotesize DELETE}   ([yshift=-5.8em]webserver.east);
+
+      \draw ([yshift=6.2em]webserver.east) edge[dashed,draw=gray!60] ([yshift=6.2em]webserver.west);
+      \draw ([yshift=5.8em]webserver.east) edge[dashed,draw=gray!60] ([yshift=5.8em]webserver.west);
+      \draw ([yshift=2.2em]webserver.east) edge[dashed,draw=gray!60] ([yshift=2.2em]webserver.west);
+      \draw ([yshift=1.8em]webserver.east) edge[dashed,draw=gray!60] ([yshift=1.8em]webserver.west);
+      \draw ([yshift=-2.2em]webserver.east) edge[dashed,draw=gray!60] ([yshift=-2.2em]webserver.west);
+      \draw ([yshift=-1.8em]webserver.east) edge[dashed,draw=gray!60] ([yshift=-1.8em]webserver.west);
+      \draw ([yshift=-6.2em]webserver.east) edge[dashed,draw=gray!60] ([yshift=-6.2em]webserver.west);
+      \draw ([yshift=-5.8em]webserver.east) edge[dashed,draw=gray!60] ([yshift=-5.8em]webserver.west);
+
+    \end{tikzpicture}
+  \end{adjustbox}
+\end{frame}
