@@ -24,46 +24,120 @@
 \end{frame}
 
 \begin{frame}{HTTP and CRUD}
+  \tikzset{->-/.style={decoration={markings,mark=at position .5 with {\arrow{>}}},postaction={decorate}}}
+  \tikzset{-<-/.style={decoration={markings,mark=at position .5 with {\arrow{<}}},postaction={decorate}}}
   \tikzstyle{rect} = [rectangle,fill=gmitblue,text width=5em,text centered,minimum height=16em,rounded corners,text=white]
   \begin{adjustbox}{max width={0.9\textwidth},center} 
     \begin{tikzpicture}[thick]
 
       \node [rect] (database) at (10,0) {Database};
-      \node [rect] (webserver) at (5,0) {Web Server};
+      \node [rect] (webserver) at (5,0) {Web \\ Server};
       \node [rect] (client) at (0,0) {Client};
 
-      \path ([yshift=5.8em]webserver.west) edge[->]                                             ([yshift=5.8em]client.east);
-      \path ([yshift=6.2em]webserver.west) edge[<-] node[anchor=south] {\footnotesize POST}     ([yshift=6.2em]client.east);
-      
-      \path ([yshift=5.8em]database.west) edge[->]                                              ([yshift=5.8em]webserver.east);
-      \path ([yshift=6.2em]database.west) edge[<-] node[anchor=south] {\footnotesize CREATE}    ([yshift=6.2em]webserver.east);
+      \pgfmathsetmacro{\levela}{6em}
+      \pgfmathsetmacro{\levelb}{2em}
+      \pgfmathsetmacro{\levelc}{-2em}
+      \pgfmathsetmacro{\leveld}{-6em}
+      \pgfmathsetmacro{\diff}{0.3em}
 
-      \path ([yshift=1.8em]webserver.west) edge[->]                                             ([yshift=1.8em]client.east);
-      \path ([yshift=2.2em]webserver.west) edge[<-] node[anchor=south] {\footnotesize GET}      ([yshift=2.2em]client.east);
+      \path ([yshift={\levela+\diff}]webserver.west) edge[<-] node[anchor=south] {\footnotesize POST}     ([yshift={\levela+\diff}]client.east);
+      \path ([yshift={\levela-\diff}]webserver.west) edge[->]                                             ([yshift={\levela-\diff}]client.east);
       
-      \path ([yshift=1.8em]database.west) edge[->]                                              ([yshift=1.8em]webserver.east);
-      \path ([yshift=2.2em]database.west) edge[<-] node[anchor=south] {\footnotesize RETRIEVE}  ([yshift=2.2em]webserver.east);
+      \path ([yshift={\levela+\diff}]database.west) edge[<-] node[anchor=south] {\footnotesize CREATE}    ([yshift={\levela+\diff}]webserver.east);
+      \path ([yshift={\levela-\diff}]database.west) edge[->]                                              ([yshift={\levela-\diff}]webserver.east);
 
-      \path ([yshift=-2.2em]webserver.west) edge[->]                                            ([yshift=-2.2em]client.east);
-      \path ([yshift=-1.8em]webserver.west) edge[<-] node[anchor=south] {\footnotesize PUT}     ([yshift=-1.8em]client.east);
+      \path ([yshift={\levelb+\diff}]webserver.west) edge[<-] node[anchor=south] {\footnotesize GET}      ([yshift={\levelb+\diff}]client.east);
+      \path ([yshift={\levelb-\diff}]webserver.west) edge[->]                                             ([yshift={\levelb-\diff}]client.east);
       
-      \path ([yshift=-2.2em]database.west) edge[->]                                             ([yshift=-2.2em]webserver.east);
-      \path ([yshift=-1.8em]database.west) edge[<-] node[anchor=south] {\footnotesize UPDATE}   ([yshift=-1.8em]webserver.east);
+      \path ([yshift={\levelb+\diff}]database.west) edge[<-] node[anchor=south] {\footnotesize RETRIEVE}  ([yshift={\levelb+\diff}]webserver.east);
+      \path ([yshift={\levelb-\diff}]database.west) edge[->]                                              ([yshift={\levelb-\diff}]webserver.east);
 
-      \path ([yshift=-6.2em]webserver.west) edge[->]                                            ([yshift=-6.2em]client.east);
-      \path ([yshift=-5.8em]webserver.west) edge[<-] node[anchor=south] {\footnotesize DELETE}  ([yshift=-5.8em]client.east);
+      \path ([yshift={\levelc+\diff}]webserver.west) edge[<-] node[anchor=south] {\footnotesize PUT}      ([yshift={\levelc+\diff}]client.east);
+      \path ([yshift={\levelc-\diff}]webserver.west) edge[->]                                             ([yshift={\levelc-\diff}]client.east);
       
-      \path ([yshift=-6.2em]database.west) edge[->]                                             ([yshift=-6.2em]webserver.east);
-      \path ([yshift=-5.8em]database.west) edge[<-] node[anchor=south] {\footnotesize DELETE}   ([yshift=-5.8em]webserver.east);
+      \path ([yshift={\levelc+\diff}]database.west) edge[<-] node[anchor=south] {\footnotesize UPDATE}    ([yshift={\levelc+\diff}]webserver.east);
+      \path ([yshift={\levelc-\diff}]database.west) edge[->]                                              ([yshift={\levelc-\diff}]webserver.east);
 
-      \draw ([yshift=6.2em]webserver.east) edge[dashed,draw=gray!60] ([yshift=6.2em]webserver.west);
-      \draw ([yshift=5.8em]webserver.east) edge[dashed,draw=gray!60] ([yshift=5.8em]webserver.west);
-      \draw ([yshift=2.2em]webserver.east) edge[dashed,draw=gray!60] ([yshift=2.2em]webserver.west);
-      \draw ([yshift=1.8em]webserver.east) edge[dashed,draw=gray!60] ([yshift=1.8em]webserver.west);
-      \draw ([yshift=-2.2em]webserver.east) edge[dashed,draw=gray!60] ([yshift=-2.2em]webserver.west);
-      \draw ([yshift=-1.8em]webserver.east) edge[dashed,draw=gray!60] ([yshift=-1.8em]webserver.west);
-      \draw ([yshift=-6.2em]webserver.east) edge[dashed,draw=gray!60] ([yshift=-6.2em]webserver.west);
-      \draw ([yshift=-5.8em]webserver.east) edge[dashed,draw=gray!60] ([yshift=-5.8em]webserver.west);
+      \path ([yshift={\leveld+\diff}]webserver.west) edge[<-] node[anchor=south] {\footnotesize DELETE}   ([yshift={\leveld+\diff}]client.east);
+      \path ([yshift={\leveld-\diff}]webserver.west) edge[->]                                             ([yshift={\leveld-\diff}]client.east);
+      
+      \path ([yshift={\leveld+\diff}]database.west) edge[<-] node[anchor=south] {\footnotesize DELETE}  ([yshift={\leveld+\diff}]webserver.east);
+      \path ([yshift={\leveld-\diff}]database.west) edge[->]                                              ([yshift={\leveld-\diff}]webserver.east);
+
+      \draw ([yshift={\levela+\diff}]webserver.west)  edge[dashed,draw=gray!60,->-] ([yshift={\levela+\diff}]webserver.east);
+      \draw ([yshift={\levela-\diff}]webserver.west)  edge[dashed,draw=gray!60,-<-] ([yshift={\levela-\diff}]webserver.east);
+      \draw ([yshift={\levelb+\diff}]webserver.west)  edge[dashed,draw=gray!60,->-] ([yshift={\levelb+\diff}]webserver.east);
+      \draw ([yshift={\levelb-\diff}]webserver.west)  edge[dashed,draw=gray!60,-<-] ([yshift={\levelb-\diff}]webserver.east);
+      \draw ([yshift={\levelc+\diff}]webserver.west)  edge[dashed,draw=gray!60,->-] ([yshift={\levelc+\diff}]webserver.east);
+      \draw ([yshift={\levelc-\diff}]webserver.west)  edge[dashed,draw=gray!60,-<-] ([yshift={\levelc-\diff}]webserver.east);
+      \draw ([yshift={\leveld+\diff}]webserver.west)  edge[dashed,draw=gray!60,->-] ([yshift={\leveld+\diff}]webserver.east);
+      \draw ([yshift={\leveld-\diff}]webserver.west)  edge[dashed,draw=gray!60,-<-] ([yshift={\leveld-\diff}]webserver.east);
+
+      \draw[dashed,draw=gray!60] ([yshift={\levela+\diff}]database.west)  -- ([yshift={\levela+\diff}]database.center) -- ([yshift={\levela-\diff}]database.center) -- ([yshift={\levela-\diff}]database.west);
+      \draw[dashed,draw=gray!60] ([yshift={\levelb+\diff}]database.west)  -- ([yshift={\levelb+\diff}]database.center) -- ([yshift={\levelb-\diff}]database.center) -- ([yshift={\levelb-\diff}]database.west);
+      \draw[dashed,draw=gray!60] ([yshift={\levelc+\diff}]database.west)  -- ([yshift={\levelc+\diff}]database.center) -- ([yshift={\levelc-\diff}]database.center) -- ([yshift={\levelc-\diff}]database.west);
+      \draw[dashed,draw=gray!60] ([yshift={\leveld+\diff}]database.west)  -- ([yshift={\leveld+\diff}]database.center) -- ([yshift={\leveld-\diff}]database.center) -- ([yshift={\leveld-\diff}]database.west);
+
+
+    \end{tikzpicture}
+  \end{adjustbox}
+\end{frame}
+
+\begin{frame}{AMP}
+  \tikzset{->-/.style={decoration={markings,mark=at position .5 with {\arrow{>}}},postaction={decorate}}}
+  \tikzset{-<-/.style={decoration={markings,mark=at position .5 with {\arrow{<}}},postaction={decorate}}}
+  \tikzstyle{rect} = [rectangle,fill=gmitblue,text width=5em,text centered,minimum height=16em,rounded corners,text=white]
+  \begin{adjustbox}{max width={0.9\textwidth},center} 
+    \begin{tikzpicture}[thick]
+
+      \node [rect] (database) at (10,0) {MySQL};
+      \node [rect] (webserver) at (5,0) {Apache \\ and PHP};
+      \node [rect] (client) at (0,0) {Firefox};
+
+      \pgfmathsetmacro{\levela}{6em}
+      \pgfmathsetmacro{\levelb}{2em}
+      \pgfmathsetmacro{\levelc}{-2em}
+      \pgfmathsetmacro{\leveld}{-6em}
+      \pgfmathsetmacro{\diff}{0.3em}
+
+      \path ([yshift={\levela+\diff}]webserver.west) edge[<-] node[anchor=south] {\footnotesize POST}     ([yshift={\levela+\diff}]client.east);
+      \path ([yshift={\levela-\diff}]webserver.west) edge[->]                                             ([yshift={\levela-\diff}]client.east);
+      
+      \path ([yshift={\levela+\diff}]database.west) edge[<-] node[anchor=south] {\footnotesize INSERT}    ([yshift={\levela+\diff}]webserver.east);
+      \path ([yshift={\levela-\diff}]database.west) edge[->]                                              ([yshift={\levela-\diff}]webserver.east);
+
+      \path ([yshift={\levelb+\diff}]webserver.west) edge[<-] node[anchor=south] {\footnotesize GET}      ([yshift={\levelb+\diff}]client.east);
+      \path ([yshift={\levelb-\diff}]webserver.west) edge[->]                                             ([yshift={\levelb-\diff}]client.east);
+      
+      \path ([yshift={\levelb+\diff}]database.west) edge[<-] node[anchor=south] {\footnotesize SELECT}  ([yshift={\levelb+\diff}]webserver.east);
+      \path ([yshift={\levelb-\diff}]database.west) edge[->]                                              ([yshift={\levelb-\diff}]webserver.east);
+
+      \path ([yshift={\levelc+\diff}]webserver.west) edge[<-] node[anchor=south] {\footnotesize PUT}      ([yshift={\levelc+\diff}]client.east);
+      \path ([yshift={\levelc-\diff}]webserver.west) edge[->]                                             ([yshift={\levelc-\diff}]client.east);
+      
+      \path ([yshift={\levelc+\diff}]database.west) edge[<-] node[anchor=south] {\footnotesize UPDATE}    ([yshift={\levelc+\diff}]webserver.east);
+      \path ([yshift={\levelc-\diff}]database.west) edge[->]                                              ([yshift={\levelc-\diff}]webserver.east);
+
+      \path ([yshift={\leveld+\diff}]webserver.west) edge[<-] node[anchor=south] {\footnotesize DELETE}   ([yshift={\leveld+\diff}]client.east);
+      \path ([yshift={\leveld-\diff}]webserver.west) edge[->]                                             ([yshift={\leveld-\diff}]client.east);
+      
+      \path ([yshift={\leveld+\diff}]database.west) edge[<-] node[anchor=south] {\footnotesize DELETE}  ([yshift={\leveld+\diff}]webserver.east);
+      \path ([yshift={\leveld-\diff}]database.west) edge[->]                                              ([yshift={\leveld-\diff}]webserver.east);
+
+      \draw ([yshift={\levela+\diff}]webserver.west)  edge[dashed,draw=gray!60,->-] ([yshift={\levela+\diff}]webserver.east);
+      \draw ([yshift={\levela-\diff}]webserver.west)  edge[dashed,draw=gray!60,-<-] ([yshift={\levela-\diff}]webserver.east);
+      \draw ([yshift={\levelb+\diff}]webserver.west)  edge[dashed,draw=gray!60,->-] ([yshift={\levelb+\diff}]webserver.east);
+      \draw ([yshift={\levelb-\diff}]webserver.west)  edge[dashed,draw=gray!60,-<-] ([yshift={\levelb-\diff}]webserver.east);
+      \draw ([yshift={\levelc+\diff}]webserver.west)  edge[dashed,draw=gray!60,->-] ([yshift={\levelc+\diff}]webserver.east);
+      \draw ([yshift={\levelc-\diff}]webserver.west)  edge[dashed,draw=gray!60,-<-] ([yshift={\levelc-\diff}]webserver.east);
+      \draw ([yshift={\leveld+\diff}]webserver.west)  edge[dashed,draw=gray!60,->-] ([yshift={\leveld+\diff}]webserver.east);
+      \draw ([yshift={\leveld-\diff}]webserver.west)  edge[dashed,draw=gray!60,-<-] ([yshift={\leveld-\diff}]webserver.east);
+
+      \draw[dashed,draw=gray!60] ([yshift={\levela+\diff}]database.west)  -- ([yshift={\levela+\diff}]database.center) -- ([yshift={\levela-\diff}]database.center) -- ([yshift={\levela-\diff}]database.west);
+      \draw[dashed,draw=gray!60] ([yshift={\levelb+\diff}]database.west)  -- ([yshift={\levelb+\diff}]database.center) -- ([yshift={\levelb-\diff}]database.center) -- ([yshift={\levelb-\diff}]database.west);
+      \draw[dashed,draw=gray!60] ([yshift={\levelc+\diff}]database.west)  -- ([yshift={\levelc+\diff}]database.center) -- ([yshift={\levelc-\diff}]database.center) -- ([yshift={\levelc-\diff}]database.west);
+      \draw[dashed,draw=gray!60] ([yshift={\leveld+\diff}]database.west)  -- ([yshift={\leveld+\diff}]database.center) -- ([yshift={\leveld-\diff}]database.center) -- ([yshift={\leveld-\diff}]database.west);
+
 
     \end{tikzpicture}
   \end{adjustbox}
