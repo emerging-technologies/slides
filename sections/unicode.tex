@@ -1,0 +1,29 @@
+%!TEX root = slides.tex
+
+\section{Unicode}
+
+\begin{frame}{Overview of Unicode}
+  \begin{description}
+    \item[Unicode] provides a unique number for every character, no matter what the platform, program or language.
+    \item[Fundamentally] computers deal with numbers -- they store letters by assigning them numbers.
+    \item[ASCII] was the standard before Unicode.
+    \item[UTF-8] is a character encoding developed by Ken Thompson and Rob Pike.
+    \item[Supported] by Apple, HP, IBM, JustSystems, Microsoft, Oracle, SAP, Sun, Sybase, Unisys -- everyone.
+  \end{description}
+  \citeurl{unicode.org/standard/WhatIsUnicode.html}
+\end{frame}
+
+\begin{frame}[fragile]{ASCII ints to chars}
+  \begin{minted}{c}
+#include <stdio.h>
+
+int main(int argc, char *argv[]) {
+
+  int a = 97;
+  
+  printf("%c %d", a, a);
+
+  return 0;
+}
+  \end{minted}
+\end{frame}
